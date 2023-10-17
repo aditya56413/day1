@@ -1,0 +1,29 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+int binarySearch(int arr[],int size,int key){
+    int s=0;
+    int e=size-1;
+    int mid=s+(e-s)/2;
+    while(s<=e){
+        if(arr[mid]==key){
+            return mid;
+        }
+        if(key<arr[mid]){
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+        mid=(s+e)/2;
+    }
+    return -1;
+}
+int main() {
+    // Write C++ code here
+    int even[6]={2,4,6,8,19,26};
+    int odd[5]={3,8,11,20,24};
+    int index=binarySearch(even,6,19);
+    cout<<index<<endl;
+    return 0;
+}
