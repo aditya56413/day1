@@ -20,4 +20,26 @@ void selectionSort(vector<int>&arr,int n){
 
 
 //Bubble sort:-
-    //
+    //i th round mme ith largest element ko right place mme pahucha dete hai
+    //n=5 ,round=n-1
+    //T.C=O(n^2)
+    //S.C=O(1)
+    //Best case     Worst case
+    //O(n)          O(n^2)
+    
+void bubbleSort(vector<int>&arr,int n){
+    //i=0 ------- <n-1
+    //j=0 ------- <n-i-1
+    for(int i=1;i<n;i++){
+        bool swapped=false;
+        for(int j=0;j<n-i;j++){
+            if(arr[j]>arr[j+1]){
+                swap(arr[j],arr[j+1]);
+                swapped=true;
+            }
+        }if(swapped==false){
+            //already sorted
+            break;
+        }
+    }
+}
