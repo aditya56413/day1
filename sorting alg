@@ -43,3 +43,32 @@ void bubbleSort(vector<int>&arr,int n){
         }
     }
 }
+
+
+//Insertion sort:-
+    //bestcase->O(n)
+    //worst case->O(n^2)
+    //remember this by cards example
+    //T.C=O(n^2)
+    //S.C=O(1)
+
+    void insertionSort(vector <int>&arr,int n){
+        for(int i=1;i<n;i++){
+            int temp=arr[i];
+            int j=i-1;
+            for(;j>=0;j--){
+                if(arr[j]>temp){
+                    //shift
+                    arr[j+1]=arr[j];
+                }
+                else{//nikal jao
+                    break;
+                }
+            }
+            arr[j+1]=temp;
+        }
+    }
+
+
+//Merge sort
+    //
