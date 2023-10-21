@@ -18,7 +18,7 @@ void selectionSort(vector<int>&arr,int n){
     }
 }
 
-
+==========================================================================================================================================
 //Bubble sort:-
     //i th round mme ith largest element ko right place mme pahucha dete hai
     //n=5 ,round=n-1
@@ -44,6 +44,7 @@ void bubbleSort(vector<int>&arr,int n){
     }
 }
 
+==========================================================================================================================================
 
 //Insertion sort:-
     //bestcase->O(n)
@@ -69,6 +70,128 @@ void bubbleSort(vector<int>&arr,int n){
         }
     }
 
-
+==========================================================================================================================================
+                                                                    =======aman dhattarwal video
 //Merge sort
-    //
+    //bestcase->O(n*logn)
+    //worst case->O(n*logn)
+    //This is stable algorithm
+    //T.C=O(n*logn)
+    //S.C=O(n)
+
+
+    void merge(int arr[],int l,int mid,int r){
+        int n1=mid-l+1;
+        int n2=r-mid;
+        int a[n1];
+        int b[n2];
+        for(int i=0;i<n1;i++){
+            a[i]=arr[l+i];
+        }
+        for(int i=0;i<n2;i++){
+            b[i]=arr[mid+l+i];
+        }
+        int i=0;
+        int j=0;
+        int k=l;
+        while(i<n1 && j<n2){
+            if(a[i]<b[j]){
+                arr[k]=a[i];
+                k++;
+                i++;
+            }
+            else{
+                arr[k]=b[j];
+                k++;
+                j++;
+            }
+        }
+        //if one array reaches the end but not second array so then only it will enter these loops
+        while(i<n1){
+            arr[k]=a[i];
+            k++;
+            i++;
+        }
+        while(j<n2){
+            arr[k]=b[j];
+            k++;
+            j++;
+        }
+    }
+
+    void mergeSort(int arr[],int l,int r){
+        if(l<r){
+            int mid=l+(r-l)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+            merge(arr,l,mid,r);
+        }
+    }
+    int main() {
+        // Write C++ code here
+        int arr[]={5,8,1,0,3,9};
+        mergeSort(arr,0,5);
+        for(int i=0;i<6;i++){
+            cout<<arr[i]<<" ";
+        }cout<<endl;
+        return 0;
+    }
+
+
+==========================================================================================================================================
+//Quick sort
+    //bestcase->O(n*logn)
+    //worst case->O(n^2)
+    //This is not a stable algorithm
+    //T.C=O(n*logn)
+    //S.C=O(n*logn)
+
+
+    #include <iostream>
+    using namespace std;
+
+    void partition(int arr[],int s,int e){
+        int pivot=arr[s];
+        int cnt=0;
+        for(int i=s+1;i<=e;i++){
+            if(arr[i]<=pivot){
+                cnt++;
+            }
+        }
+        //place the pivot at right position
+        int pivotIndex=s+cnt;
+        swap(arr[pivotIndex],arr[s]);
+        //left and right part ko handle kro
+        int i=s,j=e;
+        while(i<pivotIndex && j>pivotIndex){
+            while(arr[i]<pivot){
+                i++;
+            }
+            while(arr[j]>pivot){
+                j--;
+            }
+            if(i<pivotIndex && j>pivotIndex){
+                swap(arr[i++],arr[j--]);
+            }
+        }return pivotIndex;
+    }
+    void quickSort(int arr[],int s,int e){
+        if(s>=e){
+            return;
+        }
+        int p=partition(arr,s,e);
+        //left
+        quickSort(arr,s,p-1);
+        //right
+        quickSort(arr,p+1,e);
+    }
+    int main() {
+        int arr[5]={2,4,1,6,9};
+        int n=5;
+        quickSort(arr,0,n-1);
+        for(int i=0;i<n;i++){
+            cout<<arr[i]<<" ";
+        }cout<<endl;
+        return 0;
+    }
+
