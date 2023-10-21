@@ -76,6 +76,7 @@ void bubbleSort(vector<int>&arr,int n){
     //bestcase->O(n*logn)
     //worst case->O(n*logn)
     //This is stable algorithm
+    //preferred more for Linked list because it uses extra spaces
     //T.C=O(n*logn)
     //S.C=O(n)
 
@@ -143,8 +144,9 @@ void bubbleSort(vector<int>&arr,int n){
     //bestcase->O(n*logn)
     //worst case->O(n^2)
     //This is not a stable algorithm
+    //quick sort is preferred more for arrays because of S.C
     //T.C=O(n*logn)
-    //S.C=O(n*logn)
+    //S.C=O(1)
 
 
     #include <iostream>
