@@ -1,6 +1,7 @@
 // Online C++ compiler to run C++ program online
 #include <iostream>
 using namespace std;
+
 class Node{
     public:
     int data;
@@ -12,102 +13,98 @@ class Node{
     }
     //destructor
     ~Node(){
-        int val=this->data;
-        //memory free kar do
-        if(this->next!=NULL){
+        if(this->next !=NULL){
             delete next;
             this->next=NULL;
         }
-        cout<<"memory free for node with data "<<val<<endl;
     }
 };
-
 void insertAtHead(Node* &head,int d){
-    //create new node
+    //new node creation
     Node* temp=new Node(d);
     temp->next=head;
     head=temp;
 }
-
 void insertAtTail(Node* &tail,int d){
     Node* temp=new Node(d);
     tail->next=temp;
-    tail=tail->next;    
+    tail=temp;
 }
-
-void insertAtPosition(Node* &tail,Node* &head,int pos, int d){
-    if(pos==1){
-        insertAtHead(head,d);
-        return;
-    }
+void insertAtPosition(Node* &head,Node* &tail,int position,int d){
     Node* temp=head;
-    int count=1;
-    while(count<pos-1){
+    int cnt=1;
+    while(cnt<position-1){
         temp=temp->next;
-        count++;
+        cnt++;
     }
-    //inserting at last position
-    if(temp->next==NULL){
-        insertAtTail(tail,d);
-        return;
-    }
-    //creating node for d
-    Node* nodeToInsert=new Node(d);
+    //creating a node for d
+    Node* nodeToInsert =new Node(d);
     nodeToInsert->next=temp->next;
     temp->next=nodeToInsert;
 }
-
-void deleteNode(int pos,Node* &head){
-    if(pos==1){
+void deleteNode(int position,Node* &head){
+    //deleting head node
+    if(position==1){
         Node* temp=head;
         head=head->next;
-        //memory free kar do
+        //memory free start node
         temp->next=NULL;
         delete temp;
     }
     else{
-        //deleting middle node or last node
+        //deleting middle or last node
         Node* curr=head;
         Node* prev=NULL;
-        int count=1;
-        while(count<pos){
+        int cnt=1;
+        while(cnt<position){
             prev=curr;
             curr=curr->next;
-            count++;
+            cnt++;
         }
         prev->next=curr->next;
         curr->next=NULL;
         delete curr;
     }
 }
-
 void print(Node* &head){
     Node* temp=head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
-    }cout<<endl;
+    }
+    cout<<endl;
 }
-
 int main() {
-    // Created a new node
+    // Write C++ code here
     Node* node1=new Node(10);
     // cout<<node1->data<<endl;
     // cout<<node1->next<<endl;
-    
-    //head pointing to node1
     Node* head=node1;
     Node* tail=node1;
-    print(head);
+    // insertAtHead(head,12);
+    // insertAtHead(head,14);
+    // insertAtHead(head,16);
+    // insertAtHead(head,18);
+    // insertAtHead(head,20);
+    // print(head);
+    insertAtTail(tail,11);
     insertAtTail(tail,12);
+    insertAtTail(tail,13);
+    insertAtTail(tail,14);
     print(head);
-    insertAtTail(tail,15);
-    print(head);
-    insertAtPosition(tail,head,2,22);
-    print(head);
-    insertAtPosition(tail,head,1,59);
-    print(head);
-    deleteNode(2,head);
-    print(head);
+    insertAtPosition(head,tail,3,30);
+    print(head);         //10 11 30 12 13 14
+    deleteNode(1,head);
+    print(head);        //11 30 12 13 14
+    deleteNode(3,head);
+    print(head);        //11 30 13 14 
     return 0;
 }
+
+
+
+
+
+
+
+//
